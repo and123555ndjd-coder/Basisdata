@@ -1,0 +1,188 @@
+MariaDB [(none)]> create database kosan;
+Query OK, 1 row affected (0.014 sec)
+
+MariaDB [(none)]> use kosan;
+Database changed
+MariaDB [kosan]> CREATE TABLE kos (
+    ->     id_kos INT PRIMARY KEY,
+    ->     nama_kos VARCHAR(100),
+    ->     alamat VARCHAR(255),
+    ->     harga INT
+    -> );
+Query OK, 0 rows affected (0.028 sec)
+
+MariaDB [kosan]> INSERT INTO kos VALUES
+    -> (1, 'Kos Mawar', 'Jl. Melati No.1', 1000000),
+    -> (2, 'Kos Melati', 'Jl. Mawar No.2', 1200000),
+    -> (3, 'Kos Anggrek', 'Jl. Kenanga No.3', 900000),
+    -> (4, 'Kos Sakura', 'Jl. Sakura No.4', 1100000),
+    -> (5, 'Kos Teratai', 'Jl. Teratai No.5', 950000),
+    -> (6, 'Kos Bougenville', 'Jl. Bougenville No.6', 1050000),
+    -> (7, 'Kos Dahlia', 'Jl. Dahlia No.7', 1150000),
+    -> (8, 'Kos Melur', 'Jl. Melur No.8', 980000),
+    -> (9, 'Kos Cempaka', 'Jl. Cempaka No.9', 1020000),
+    -> (10, 'Kos Kamboja', 'Jl. Kamboja No.10', 1080000),
+    -> (11, 'Kos Flamboyan', 'Jl. Flamboyan No.11', 1000000),
+    -> (12, 'Kos Kenanga', 'Jl. Kenanga No.12', 950000),
+    -> (13, 'Kos Seruni', 'Jl. Seruni No.13', 990000),
+    -> (14, 'Kos Lili', 'Jl. Lili No.14', 970000),
+    -> (15, 'Kos Melisa', 'Jl. Melisa No.15', 1010000);
+Query OK, 15 rows affected (0.603 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+MariaDB [kosan]> CREATE TABLE penghuni (
+    ->     id_penghuni INT PRIMARY KEY,
+    ->     nama_penghuni VARCHAR(100),
+    ->     umur INT,
+    ->     id_kos INT,
+    ->     FOREIGN KEY (id_kos) REFERENCES kos(id_kos)
+    -> );
+Query OK, 0 rows affected (0.061 sec)
+
+MariaDB [kosan]> INSERT INTO penghuni VALUES
+    -> (1, 'Andi', 22, 1),
+    -> (2, 'Budi', 24, 2),
+    -> (3, 'Citra', 21, 3),
+    -> (4, 'Dina', 23, 4),
+    -> (5, 'Eka', 25, 5),
+    -> (6, 'Fajar', 22, 6),
+    -> (7, 'Gita', 20, 7),
+    -> (8, 'Hadi', 26, 8),
+    -> (9, 'Intan', 23, 9),
+    -> (10, 'Joko', 24, 10),
+    -> (11, 'Kiki', 22, 11),
+    -> (12, 'Lina', 21, 12),
+    -> (13, 'Mira', 25, 13),
+    -> (14, 'Nina', 23, 14),
+    -> (15, 'Oki', 22, 15);
+Query OK, 15 rows affected (0.148 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+MariaDB [kosan]> CREATE TABLE fasilitas (
+    ->     id_fasilitas INT PRIMARY KEY,
+    ->     nama_fasilitas VARCHAR(100),
+    ->     id_kos INT,
+    ->     FOREIGN KEY (id_kos) REFERENCES kos(id_kos)
+    -> );
+Query OK, 0 rows affected (0.265 sec)
+
+MariaDB [kosan]> INSERT INTO fasilitas VALUES
+    -> (1, 'WiFi', 1),
+    -> (2, 'AC', 2),
+    -> (3, 'Kamar Mandi Dalam', 3),
+    -> (4, 'Dapur Bersama', 4),
+    -> (5, 'Parkir Motor', 5),
+    -> (6, 'Laundry', 6),
+    -> (7, 'TV Kabel', 7),
+    -> (8, 'Lemari', 8),
+    -> (9, 'Meja Belajar', 9),
+    -> (10, 'Kipas Angin', 10),
+    -> (11, 'Air Panas', 11),
+    -> (12, 'CCTV', 12),
+    -> (13, 'Dispenser', 13),
+    -> (14, 'Kulkas', 14),
+    -> (15, 'Tempat Jemur', 15);
+Query OK, 15 rows affected (0.015 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+MariaDB [kosan]> select * from kos;
++--------+-----------------+----------------------+---------+
+| id_kos | nama_kos        | alamat               | harga   |
++--------+-----------------+----------------------+---------+
+|      1 | Kos Mawar       | Jl. Melati No.1      | 1000000 |
+|      2 | Kos Melati      | Jl. Mawar No.2       | 1200000 |
+|      3 | Kos Anggrek     | Jl. Kenanga No.3     |  900000 |
+|      4 | Kos Sakura      | Jl. Sakura No.4      | 1100000 |
+|      5 | Kos Teratai     | Jl. Teratai No.5     |  950000 |
+|      6 | Kos Bougenville | Jl. Bougenville No.6 | 1050000 |
+|      7 | Kos Dahlia      | Jl. Dahlia No.7      | 1150000 |
+|      8 | Kos Melur       | Jl. Melur No.8       |  980000 |
+|      9 | Kos Cempaka     | Jl. Cempaka No.9     | 1020000 |
+|     10 | Kos Kamboja     | Jl. Kamboja No.10    | 1080000 |
+|     11 | Kos Flamboyan   | Jl. Flamboyan No.11  | 1000000 |
+|     12 | Kos Kenanga     | Jl. Kenanga No.12    |  950000 |
+|     13 | Kos Seruni      | Jl. Seruni No.13     |  990000 |
+|     14 | Kos Lili        | Jl. Lili No.14       |  970000 |
+|     15 | Kos Melisa      | Jl. Melisa No.15     | 1010000 |
++--------+-----------------+----------------------+---------+
+15 rows in set (0.001 sec)
+
+MariaDB [kosan]> select * from penghuni;
++-------------+---------------+------+--------+
+| id_penghuni | nama_penghuni | umur | id_kos |
++-------------+---------------+------+--------+
+|           1 | Andi          |   22 |      1 |
+|           2 | Budi          |   24 |      2 |
+|           3 | Citra         |   21 |      3 |
+|           4 | Dina          |   23 |      4 |
+|           5 | Eka           |   25 |      5 |
+|           6 | Fajar         |   22 |      6 |
+|           7 | Gita          |   20 |      7 |
+|           8 | Hadi          |   26 |      8 |
+|           9 | Intan         |   23 |      9 |
+|          10 | Joko          |   24 |     10 |
+|          11 | Kiki          |   22 |     11 |
+|          12 | Lina          |   21 |     12 |
+|          13 | Mira          |   25 |     13 |
+|          14 | Nina          |   23 |     14 |
+|          15 | Oki           |   22 |     15 |
++-------------+---------------+------+--------+
+15 rows in set (0.001 sec)
+
+MariaDB [kosan]> select * from fasilitas;
++--------------+-------------------+--------+
+| id_fasilitas | nama_fasilitas    | id_kos |
++--------------+-------------------+--------+
+|            1 | WiFi              |      1 |
+|            2 | AC                |      2 |
+|            3 | Kamar Mandi Dalam |      3 |
+|            4 | Dapur Bersama     |      4 |
+|            5 | Parkir Motor      |      5 |
+|            6 | Laundry           |      6 |
+|            7 | TV Kabel          |      7 |
+|            8 | Lemari            |      8 |
+|            9 | Meja Belajar      |      9 |
+|           10 | Kipas Angin       |     10 |
+|           11 | Air Panas         |     11 |
+|           12 | CCTV              |     12 |
+|           13 | Dispenser         |     13 |
+|           14 | Kulkas            |     14 |
+|           15 | Tempat Jemur      |     15 |
++--------------+-------------------+--------+
+15 rows in set (0.001 sec)
+
+MariaDB [kosan]> SELECT kos.nama_kos
+    -> FROM kos
+    -> JOIN fasilitas ON kos.id_kos = fasilitas.id_kos
+    -> WHERE fasilitas.nama_fasilitas = 'WiFi';
++-----------+
+| nama_kos  |
++-----------+
+| Kos Mawar |
++-----------+
+1 row in set (0.002 sec)
+
+MariaDB [kosan]> SELECT penghuni.nama_penghuni, kos.nama_kos, kos.harga
+    -> FROM penghuni
+    -> JOIN kos ON penghuni.id_kos = kos.id_kos
+    -> WHERE kos.harga BETWEEN 980000 AND 1100000;
++---------------+-----------------+---------+
+| nama_penghuni | nama_kos        | harga   |
++---------------+-----------------+---------+
+| Andi          | Kos Mawar       | 1000000 |
+| Dina          | Kos Sakura      | 1100000 |
+| Fajar         | Kos Bougenville | 1050000 |
+| Hadi          | Kos Melur       |  980000 |
+| Intan         | Kos Cempaka     | 1020000 |
+| Joko          | Kos Kamboja     | 1080000 |
+| Kiki          | Kos Flamboyan   | 1000000 |
+| Mira          | Kos Seruni      |  990000 |
+| Oki           | Kos Melisa      | 1010000 |
++---------------+-----------------+---------+
+9 rows in set (0.001 sec)
+
+MariaDB [kosan]>
+
+
+
+
